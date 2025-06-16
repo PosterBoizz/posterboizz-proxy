@@ -1,6 +1,10 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+
+// Optional: Load environment variables locally (ONLY for local development)
+require('dotenv').config();
+
 app.use(express.json());
 
 app.post('/shopify', async (req, res) => {
@@ -10,7 +14,7 @@ app.post('/shopify', async (req, res) => {
       req.body,
       {
         headers: {
-          'X-Shopify-Storefront-Access-Token': 'b0b76d6795770ecab11012be5e0a32bb',
+          'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_TOKEN,
           'Content-Type': 'application/json'
         }
       }
